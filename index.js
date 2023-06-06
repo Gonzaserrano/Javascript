@@ -127,18 +127,6 @@ function precioEstadia(){
 
 }
 
-/*function agregarPersona() {
-    var nombre = prompt("Ingrese el nombre:");
-    var edad = parseInt(prompt("Ingrese la edad:"));
-
-    const persona = {
-        nombre: nombre,
-        edad: edad
-    }
-    personas.push(persona);
-}*/
-
-
 function siguiente(){
     do{
         var segundaOpcion = parseInt(prompt(""))
