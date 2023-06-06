@@ -124,7 +124,6 @@ function precioEstadia(){
     var precioTotal = ubicacion[precioHotel].precio * cantidadDias;
 
     alert("el precio total de la estadia es: $"+ precioTotal);
-
 }
 
 function siguiente(){
@@ -142,3 +141,4 @@ function siguiente(){
 
     }while(repeticion)
 }
+gf
