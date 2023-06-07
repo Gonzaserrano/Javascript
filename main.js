@@ -1,5 +1,5 @@
 var cantidadDias;
-var cantidadHuespedes;
+var cantidadHabitaciones;
 var precioHotel;
 const personas = [];
 const ubicacion = [
@@ -43,11 +43,8 @@ do{
         case '4':
             siguiente();
             break;
-        case '5':
-            
-            break;
         default:
-            prompt("La opcion ingresada es incorrecta.");
+            alert("La opcion ingresada es incorrecta.");
             break;
     }
 
@@ -56,7 +53,7 @@ do{
 
 function destino(){
 
-    alert("Seleccione el destino");
+    alert("Seleccione el destino escribiendo su abreviatura:");
 
     do{
     
@@ -122,30 +119,33 @@ function huespedes(){
         return;
     }
     
-    var cantidadHabitaciones = Math.ceil(cantidadHuespedes / 4);
+    cantidadHabitaciones = Math.ceil(cantidadHuespedes / 4);
     
     alert("Para " + cantidadHuespedes + " huéspedes, se necesitarán " + cantidadHabitaciones + " habitaciones.");
     }
 
+    function siguiente(){
+        do{
+            var segundaOpcion = prompt("Opcion 1. Precio total de la estadia:  \nOpcion 2. Datos para la reserva: \nOpcion 3. Metodo de pago: \nOpcion 4. Volver");
+            switch(segundaOpcion){
+                case '1':
+                    precioEstadia()
+                    break;
+                case '2':
+                    reserva();
+                    break;
+                case '3':
+                    break;
+            }
+    
+        }while(repeticion)
+    }
+
 function precioEstadia(){
 
-    var precioTotal = ubicacion[precioHotel].precio * cantidadDias;
-
+    var precioTotal = ubicacion[precioHotel].precio * cantidadHabitaciones * cantidadDias;
+    
     alert("el precio total de la estadia es: $"+ precioTotal);
+
 }
 
-function siguiente(){
-    do{
-        var segundaOpcion = parseInt(prompt("Opcion 1. Precio total de la estadia:  \nOpcion 2. Datos para la reserva: \nOpcion 3. Metodo de pago: \nOpcion 4. Volver"))
-        switch(segundaOpcion){
-            case '1':
-                precioEstadia();
-                break;
-            case '2':
-                break;
-            case '3':
-                break;
-        }
-
-    }while(repeticion)
-}
