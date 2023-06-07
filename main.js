@@ -1,5 +1,5 @@
-var cantidadDias;
-var cantidadHabitaciones;
+var cantidadDias = 0;
+var cantidadHabitaciones = 0;
 var precioHotel;
 const personas = [];
 const ubicacion = [
@@ -41,7 +41,22 @@ do{
             huespedes();
             break;
         case '4':
-            siguiente();
+
+            if(precioHotel <= 0 ){
+                alert("No se ha seleccionado el destino.")
+            }
+
+            if(cantidadDias <= 0 ){
+                alert("No se ha seleccionado la cantidad de dias a hospedarse.")
+            }
+
+            if(cantidadHabitaciones <=0 ){
+                alert("No se ha seleccionado de huespedes.")
+            }
+
+            else{
+                siguiente();
+            }
             break;
         default:
             alert("La opcion ingresada es incorrecta.");
@@ -124,27 +139,32 @@ function huespedes(){
     alert("Para " + cantidadHuespedes + " huéspedes, se necesitarán " + cantidadHabitaciones + " habitaciones.");
     }
 
-    function siguiente(){
-        do{
-            var segundaOpcion = prompt("Opcion 1. Precio total de la estadia:  \nOpcion 2. Datos para la reserva: \nOpcion 3. Metodo de pago: \nOpcion 4. Volver");
-            switch(segundaOpcion){
-                case '1':
-                    precioEstadia()
-                    break;
-                case '2':
-                    reserva();
-                    break;
-                case '3':
-                    break;
-            }
+function siguiente(){
+    do{
+        var segundaOpcion = prompt("Opcion 1. Precio total de la estadia:  \nOpcion 2. Datos para la reserva: \nOpcion 3. Metodo de pago: \nOpcion 4. Volver");
+        switch(segundaOpcion){
+            case '1':
+                precioEstadia()
+                break;
+            case '2':
+                reserva();
+                break;
+            case '3':
+                break;
+            case '4':
+                break;
+            default:
+                alert("La opcion ingresada es incorrecta.");
+                break;
+        }
     
-        }while(repeticion)
-    }
+    }while(repeticion)
+}    
 
 function precioEstadia(){
 
     var precioTotal = ubicacion[precioHotel].precio * cantidadHabitaciones * cantidadDias;
-    
+
     alert("el precio total de la estadia es: $"+ precioTotal);
 
 }
