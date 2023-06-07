@@ -42,7 +42,7 @@ do{
             break;
         case '4':
 
-            if(precioHotel <= 0 ){
+            if(precioHotel <= -1 ){
                 alert("No se ha seleccionado el destino.")
             }
 
@@ -63,7 +63,7 @@ do{
             break;
     }
 
-}while(opcion != "Salir")
+}while(opcion.toUpperCase() != "Salir")
 
 
 function destino(){
@@ -71,16 +71,27 @@ function destino(){
     alert("Seleccione el destino escribiendo su abreviatura:");
 
     do{
+
+
     
-        var listaLugares = "";
+        /*var listaLugares = "";
 
         for( var i = 0; i < ubicacion.length; i++){ 
         listaLugares  += ubicacion[i].abreviatura + " . " + ubicacion[i].destino + "\nPrecio: $" + ubicacion[i].precio + "\n";
 
+        }*/
+        function listas(ubicacion){
+        var lista = "";
+        ubicacion.forEach(function(lugar){
+            lista += lugar.abreviatura + " . " + lugar.destino + "\nPrecio: $" + lugar.precio + "\n";
+        });
+
+        return lista;
         }
 
+        var listaLugares = listas(ubicacion);
 
-        nombreLugar = prompt ("Lista de Lugares:\n\n" + listaLugares + "\n Salir" );
+        var nombreLugar = prompt ("Lista de Lugares:\n\n" + listaLugares + "\n Salir" );
     
         var lugarEncontrado; 
 
@@ -129,7 +140,7 @@ function huespedes(){
 
     var cantidadHuespedes = parseInt(prompt("Ingrese la cantidad de huéspedes:"));
     
-    if (cantidadHuespedes <= 0) {
+    if ( cantidadHuespedes <= 0 ) {
         alert("La cantidad de huéspedes ingresada no es válida.");
         return;
     }
@@ -152,13 +163,13 @@ function siguiente(){
             case '3':
                 break;
             case '4':
-                break;
+                return;
             default:
                 alert("La opcion ingresada es incorrecta.");
                 break;
         }
     
-    }while(repeticion)
+    }while(segundaOpcion.toUpperCase() != "Salir")
 }    
 
 function precioEstadia(){
@@ -167,5 +178,25 @@ function precioEstadia(){
 
     alert("el precio total de la estadia es: $"+ precioTotal);
 
+}
+
+function reserva(){
+    switch(opcionReserva){
+        case'1':
+            nombreApellido = prompt("Igrese nombre y apellido: ");
+            break;
+        case '2':
+            email = prompt("Ingrese direccion de E-mail:");
+            break;
+        case '3':
+            telefono = prompt("Ingrese numero de telefono:");
+            break;
+        case '4':
+            dni = prompt("Ingrese numero de documnto:");  
+            break;
+        default:
+            alert("La opcion ingresada es incorrecta.");
+            break;
+    }
 }
 
