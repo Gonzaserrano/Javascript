@@ -44,7 +44,7 @@ do{
             siguiente();
             break;
         case '5':
-            precioEstadia();
+            
             break;
         default:
             prompt("La opcion ingresada es incorrecta.");
@@ -107,17 +107,25 @@ function destino(){
 
 function dias(){
 
-    alert("cantidad de dias" + cantidadDias);
     cantidadDias = parseInt(prompt("Ingrese la cantidad de dias que desee hospedarse"));
-    alert("cantidad de dias" + cantidadDias);
 
 }
 
 function huespedes(){
+    
+    alert("Se pueden hospedar hasta 4 huespedes por habitacion.")
 
-   cantidadHuespedes = parseInt(prompt("Ingrese cantidad de huespedes"));
-
-}
+    var cantidadHuespedes = parseInt(prompt("Ingrese la cantidad de huéspedes:"));
+    
+    if (cantidadHuespedes <= 0) {
+        alert("La cantidad de huéspedes ingresada no es válida.");
+        return;
+    }
+    
+    var cantidadHabitaciones = Math.ceil(cantidadHuespedes / 4);
+    
+    alert("Para " + cantidadHuespedes + " huéspedes, se necesitarán " + cantidadHabitaciones + " habitaciones.");
+    }
 
 function precioEstadia(){
 
@@ -128,10 +136,10 @@ function precioEstadia(){
 
 function siguiente(){
     do{
-        var segundaOpcion = parseInt(prompt(""))
+        var segundaOpcion = parseInt(prompt("Opcion 1. Precio total de la estadia:  \nOpcion 2. Datos para la reserva: \nOpcion 3. Metodo de pago: \nOpcion 4. Volver"))
         switch(segundaOpcion){
             case '1':
-                
+                precioEstadia();
                 break;
             case '2':
                 break;
@@ -141,4 +149,3 @@ function siguiente(){
 
     }while(repeticion)
 }
-gf
