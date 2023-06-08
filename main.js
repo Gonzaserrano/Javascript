@@ -1,7 +1,6 @@
-var cantidadDias = 0;
-var cantidadHabitaciones = 0;
-var precioHotel;
-const personas = [];
+var hotel = {};
+var persona = {};
+let tarjeta = {};
 const ubicacion = [
 
 { abreviatura: "MDP", destino: "Mar del plata", precio: 15000 },
@@ -28,7 +27,7 @@ alert("Bienvenido/a para planificar sus proximas vacaciones.");
 
 do{
 
-    opcion = prompt("Bienvenido/a \nOpcion 1. Seleccione destino:  \nOpcion 2. Seleccione cantidad de dias: \nOpcion 3. Datos de los huespedes: \nOpcion 4. Siguiente");
+    var opcion = prompt("Bienvenido/a \nOpcion 1. Seleccione destino:  \nOpcion 2. Seleccione cantidad de dias: \nOpcion 3. Seleccione la cantidad de huespedes: \nOpcion 4. Siguiente");
     
     switch (opcion){
         case '1':
@@ -42,16 +41,16 @@ do{
             break;
         case '4':
 
-            if(precioHotel <= -1 ){
-                alert("No se ha seleccionado el destino.")
+            if(hotel.precioHotel == null ){
+                alert("No se ha seleccionado el destino.");
             }
 
-            if(cantidadDias <= 0 ){
-                alert("No se ha seleccionado la cantidad de dias a hospedarse.")
+            if(hotel.cantidadDias == null ){
+                alert("No se ha seleccionado la cantidad de dias a hospedarse.");
             }
 
-            if(cantidadHabitaciones <=0 ){
-                alert("No se ha seleccionado de huespedes.")
+            if(hotel.cantidadHabitaciones == null ){
+                alert("No se ha seleccionado de huespedes.");
             }
 
             else{
@@ -63,7 +62,7 @@ do{
             break;
     }
 
-}while(opcion.toUpperCase() != "Salir")
+}while(opcion != null)
 
 
 function destino(){
@@ -72,24 +71,12 @@ function destino(){
 
     do{
 
+        var listaLugares = "";
 
-    
-        /*var listaLugares = "";
-
-        for( var i = 0; i < ubicacion.length; i++){ 
+        for( var i = 0; i < ubicacion.length; i++){
         listaLugares  += ubicacion[i].abreviatura + " . " + ubicacion[i].destino + "\nPrecio: $" + ubicacion[i].precio + "\n";
 
-        }*/
-        function listas(ubicacion){
-        var lista = "";
-        ubicacion.forEach(function(lugar){
-            lista += lugar.abreviatura + " . " + lugar.destino + "\nPrecio: $" + lugar.precio + "\n";
-        });
-
-        return lista;
         }
-
-        var listaLugares = listas(ubicacion);
 
         var nombreLugar = prompt ("Lista de Lugares:\n\n" + listaLugares + "\n Salir" );
     
@@ -109,7 +96,8 @@ function destino(){
 
             alert("Ha seleccionado " + lugarEncontrado.destino );
 
-            precioHotel = i;
+            hotel.precioHotel = lugarEncontrado.precio;
+
 
             break;
         }
@@ -124,13 +112,14 @@ function destino(){
         alert("El producto no se encontró en la lista."); 
         } 
 
-    }while(nombreLugar != "SALIR")
+    }while(nombreLugar)
 
 }
 
+
 function dias(){
 
-    cantidadDias = parseInt(prompt("Ingrese la cantidad de dias que desee hospedarse"));
+    hotel.cantidadDias = parseInt(prompt("Ingrese la cantidad de dias que desee hospedarse"));
 
 }
 
@@ -145,22 +134,24 @@ function huespedes(){
         return;
     }
     
-    cantidadHabitaciones = Math.ceil(cantidadHuespedes / 4);
+    hotel.cantidadHabitaciones = Math.ceil(cantidadHuespedes / 4);
     
-    alert("Para " + cantidadHuespedes + " huéspedes, se necesitarán " + cantidadHabitaciones + " habitaciones.");
+    alert("Para " + cantidadHuespedes + " huéspedes, se necesitarán " + hotel.cantidadHabitaciones + " habitaciones.");
     }
 
 function siguiente(){
+
     do{
         var segundaOpcion = prompt("Opcion 1. Precio total de la estadia:  \nOpcion 2. Datos para la reserva: \nOpcion 3. Metodo de pago: \nOpcion 4. Volver");
         switch(segundaOpcion){
             case '1':
-                precioEstadia()
+                precioEstadia();
                 break;
             case '2':
                 reserva();
                 break;
             case '3':
+                metodoPago();
                 break;
             case '4':
                 return;
@@ -169,34 +160,75 @@ function siguiente(){
                 break;
         }
     
-    }while(segundaOpcion.toUpperCase() != "Salir")
+    }while(segundaOpcion)
 }    
 
 function precioEstadia(){
 
-    var precioTotal = ubicacion[precioHotel].precio * cantidadHabitaciones * cantidadDias;
+    var precioTotal = hotel.precioHotel * hotel.cantidadHabitaciones * hotel.cantidadDias;
 
     alert("el precio total de la estadia es: $"+ precioTotal);
 
 }
 
 function reserva(){
-    switch(opcionReserva){
-        case'1':
-            nombreApellido = prompt("Igrese nombre y apellido: ");
-            break;
-        case '2':
-            email = prompt("Ingrese direccion de E-mail:");
-            break;
-        case '3':
-            telefono = prompt("Ingrese numero de telefono:");
-            break;
-        case '4':
-            dni = prompt("Ingrese numero de documnto:");  
-            break;
-        default:
-            alert("La opcion ingresada es incorrecta.");
-            break;
-    }
+
+    do{
+
+        var opcionReserva = prompt("Opcion 1. Nombre y Apellido:  \nOpcion 2. Direccion E-mail: \nOpcion 3. Numero de telefono: \nOpcion 4. Numero de documento: \nOpcion 5. Datos de la tarjeta a pagar: \nOpcion 6. Volver");
+
+        switch(opcionReserva){
+            case '1':
+                persona.nombre = prompt("Ingrese nombre: ");
+                persona.apellido = prompt("Ingrese apellido: ");
+                break;
+            case '2':
+                persona.email = prompt("Ingrese direccion de E-mail:");
+                break;
+            case '3':
+                persona.telefono = parseInt(prompt("Ingrese numero de telefono:"));
+                break;
+            case '4':
+                persona.dni = parseInt(prompt("Ingrese numero de documento:"));  
+                break;
+            case '5':
+                tarjeta.numero = parseInt(prompt("Ingrese numero de tarjeta:"));  
+                tarjeta.nombre = prompt("Ingrese nombre que figura en la tarjeta:");
+                tarjeta.vencimiento = prompt("Ingrese fecha de vencimiento de la tajeta:");
+                tarjeta.seguridad = prompt("Ingrese codigo de seguridad");
+                break;
+            case '6':
+                return; 
+            default:
+                alert("La opcion ingresada es incorrecta.");
+                break;
+        }
+        var mensaje =
+    'Nombre: ' + persona.nombre + '\n' +
+    'Apellido: ' + persona.apellido + '\n' +
+    'Teléfono: ' + persona.telefono + '\n' +
+    'Email: ' + persona.email + '\n' +
+    'DNI: ' + persona.dni;
+
+  alert(mensaje);
+    }while(opcionReserva)
+
+    
 }
 
+function metodoPago(){
+
+    const cuotasDisponibles = [3, 6, 12]; 
+    const precioTotal = hotel.precioHotel * hotel.cantidadHabitaciones * hotel.cantidadDias;
+
+    alert("El precio total de la estadía es: $" + precioTotal);
+
+    const cuotas = parseInt(prompt("Ingrese la cantidad de cuotas deseadas:"));
+    
+    if (cuotasDisponibles.includes(cuotas)) {
+        const montoCuota = precioTotal / cuotas;
+        alert("Monto de cada cuota: $" + montoCuota);
+    } else {
+        alert("La cantidad de cuotas ingresada no es válida.");
+    }
+}
