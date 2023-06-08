@@ -175,7 +175,7 @@ function reserva(){
 
     do{
 
-        var opcionReserva = prompt("Opcion 1. Nombre y Apellido:  \nOpcion 2. Direccion E-mail: \nOpcion 3. Numero de telefono: \nOpcion 4. Numero de documento: \nOpcion 5. Datos de la tarjeta a pagar: \nOpcion 6. Volver");
+        var opcionReserva = prompt("Opcion 1.Ingrese nombre y apellido:  \nOpcion 2. Direccion E-mail: \nOpcion 3. Numero de telefono: \nOpcion 4. Numero de documento: \nOpcion 5. Datos de la tarjeta a pagar: \nOpcion 6. Volver");
 
         switch(opcionReserva){
             case '1':
@@ -204,11 +204,11 @@ function reserva(){
                 break;
         }
         var mensaje =
-    'Nombre: ' + persona.nombre + '\n' +
-    'Apellido: ' + persona.apellido + '\n' +
-    'Teléfono: ' + persona.telefono + '\n' +
-    'Email: ' + persona.email + '\n' +
-    'DNI: ' + persona.dni;
+    "Nombre: " + persona.nombre + "\n" +
+    "Apellido: " + persona.apellido + "\n" +
+    "Teléfono: " + persona.telefono + "\n" +
+    "Email: " + persona.email + "\n" +
+    "NI: " + persona.dni;
 
   alert(mensaje);
     }while(opcionReserva)
