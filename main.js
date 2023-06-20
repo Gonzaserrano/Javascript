@@ -213,7 +213,9 @@ function reserva(){
   alert(mensaje);
     }while(opcionReserva)
 
-}
+} 
+
+
 
 function metodoPago(){
 
